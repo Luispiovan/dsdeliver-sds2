@@ -1,4 +1,5 @@
 import './styles.css'
+import { Reactomponent as MainImage } from './main.svg';
 
 function Home() {
     return (
@@ -15,6 +16,9 @@ function Home() {
                         levaremoss na sua porta
                     </h3>
                     <a href="orders" className="home-btn-order"> FAZER PEDIDO </a>
+                </div>
+                <div className="home-image">
+                <MainImage/>
                 </div>
             </div>
         </div>
