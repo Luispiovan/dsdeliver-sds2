@@ -3,14 +3,19 @@ import { Product } from "./Types";
 
 type Props = {
     products: Product[];
+    onSelectProduct: (product: Product) => void;
 }
 
-function ProductsList({ products }: Props){
+function ProductsList({ products, onSelectProduct }: Props){
     return (
         <div className="orders-list-container">
             <div className="orders-list-itens">
                 { products.map(product => (
-                    <ProductCard key={product.id} product={product}/>
+                    <ProductCard 
+                        key={product.id} 
+                        product={product}
+                        onSelectProduct={onSelectProduct}
+                    />
                 ))}
             </div>
         </div>
