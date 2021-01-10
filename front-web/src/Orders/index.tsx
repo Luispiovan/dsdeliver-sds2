@@ -1,12 +1,26 @@
 import './styles.css';
 import StepsHeader  from './StepsHeader';
 import ProductsList from './ProductList';
+import React, { useEffect, useState } from 'react';
+import { Product } from './Types';
+import { fetchProducts } from '../api';
+import OrderLocation from './OrderLocation';
+
 
 function Orders() {
+    
+    const [products, setProducts] = useState<Product[]>([]);
+
+    useEffect(() => {
+        fetchProducts().then((response: { data: React.SetStateAction<Product[]>; }) => setProducts(response.data)).catch((error: any) => console.log(error))
+        
+    }, []) 
+
     return (
         <div className="orders-container">
            <StepsHeader />
-           <ProductsList />
+           <ProductsList  products ={ products } />
+           <OrderLocation />
         </div>
     );
 }
