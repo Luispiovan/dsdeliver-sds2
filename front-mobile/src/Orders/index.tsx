@@ -1,3 +1,4 @@
+import { useIsFocused, useNavigation } from '@react-navigation/native';
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { StyleSheet, ScrollView, Alert, Text } from 'react-native';
@@ -10,14 +11,28 @@ import { Order } from '../Types';
 function Orders() {
 
   const [orders, setOrders] = useState<Order[]>([]);
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
+  const navigation = useNavigation();
+  const isFocused = useIsFocused();
 
-  useEffect(() => {
+  const fechtData = () => {
     setIsLoading(true);
     fecthOrders().then(response => setOrders(response.data))
                  .catch(() => Alert.alert('Houve um erro com os pedidos'))
                  .finally(() => setIsLoading(false));
-  }, [])
+  }
+  useEffect(() => {
+    if (isFocused) {
+      fechtData();
+    }
+  }, [isFocused]);
+
+  
+  const handleOnPress = (order: Order) => {
+    navigation.navigate('OrderDetails', {
+      order
+    });
+  }
 
   return (
     <>
@@ -27,8 +42,9 @@ function Orders() {
               <Text style={styles.container}>Buscando pedidos...</Text>
             ) : (
               orders.map(order => (
-                <TouchableWithoutFeedback key={order.id}>
-                  <OrderCard order={order}/>
+                <TouchableWithoutFeedback 
+                  key={order.id} onPress={() => handleOnPress(order)}>
+                    <OrderCard order={order}/>
                 </TouchableWithoutFeedback>
               ))
             )}
@@ -40,8 +56,7 @@ function Orders() {
 const styles = StyleSheet.create({
   container: {
     paddingRight: '5%',
-    paddingLeft: '5%',
-    
+    paddingLeft: '5%',   
   }
 })
     

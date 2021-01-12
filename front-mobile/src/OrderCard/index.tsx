@@ -10,10 +10,19 @@ dayjs.extend(relativeTime);
 
 type Props = {
   order: Order;
-} 
+}
 
 function dateFromNow(date: string) {
   return dayjs(date).fromNow();
+}
+
+function formatPrice(price: number) {
+  const formatter =new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+    minimumFractionDigits: 2
+  })
+  return formatter.format(price);
 }
 
 function OrderCard({order}: Props) {
@@ -21,12 +30,12 @@ function OrderCard({order}: Props) {
         <View style={styles.container}>
             <View style={styles.header}>
                <Text style={styles.orderName}>Pedido {order.id}</Text>
-               <Text style={styles.orderPrice}>R$ {order.total}</Text> 
+               <Text style={styles.orderPrice}>R$ {formatPrice(order.total)}</Text> 
             </View>
             <Text style={styles.text}> {dateFromNow(order.moment)}</Text> 
             <View style={styles.productsList}>
                 {order.products.map(product => (
-                  <Text key={product.id} style={styles.text}> {product.name}</Text>
+                  <Text key={product.id} style={styles.text}>{product.name}</Text>
                 ))}
             </View> 
         </View>   
