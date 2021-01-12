@@ -1,13 +1,13 @@
 import './styles.css';
-import { Reactomponent as YoutubeIcon } from './youtube.svg';
-import { Reactomponent as LinkedinIcon } from './linkedin.svg';
-import { Reactomponent as InstagramIcon } from './instagram.svg';
+// import { ReactComponent as YoutubeIcon } from './youtube.svg';
+// import { ReactComponent as LinkedinIcon } from './linkedin.svg';
+// import { ReactComponent as InstagramIcon } from './instagram.svg';
 
 function Footer() {
     return (
         <footer className="main-footer">
             App desenvolvido durante a 2ª ed. do evento Semana DevSuperior
-            <div className="footer-icons">
+            {/* <div className="footer-icons">
                 <a href="http://www.youtube.com/c/DevSuperior" target="_new">
                     <YoutubeIcon />
                 </a>
@@ -16,8 +16,8 @@ function Footer() {
                 </a>
                 <a href="http://www.instagram.com/devsuperior.ig" target="_new">
                     <InstagramIcon />
-                </a>
-            </div>
+                </a> 
+            </div> */}
         </footer>
     );
 }
