@@ -9,11 +9,11 @@
 		<version>2.4.1</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.devsuperior</groupId>
+	<groupId>com.santosediego</groupId>
 	<artifactId>dsdeliver</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>dsdeliver</name>
-	<description>Projeto Semana Dev Superior 2.0</description>
+	<description>Projeto semana Dev Superior 2.0</description>
 
 	<properties>
 		<java.version>11</java.version>
